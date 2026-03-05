@@ -53,7 +53,7 @@ st.markdown("""
 api_key = st.secrets.get("GEMINI_API_KEY") or st.sidebar.text_input("Gemini API Keyを入れてね", type="password")
 
 # 💎 タイトルエリア
-st.title("『推し活的・アオハルレター』✨")
+st.title("『推し活的・アオくてハルい文（ふみ）』✨")
 st.markdown("### 〜 あなたの『未完成』は、今しか紡げない唯一無二の物語 〜")
 
 # 📝 入力エリア

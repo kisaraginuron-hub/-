@@ -1,5 +1,6 @@
 import streamlit as st
 import google.generativeai as genai
+import datetime  # 忘れずに一番上の方に入れておいてね！
 
 # 🎨 ページの設定
 st.set_page_config(page_title="アオくてハルい文（ふみ）", page_icon="✨", layout="centered")
@@ -81,30 +82,32 @@ st.markdown("""
     }
     </style>
     """, unsafe_allow_html=True)
-import datetime
 
-# 🗓️ 日替わりメッセージのリスト（如月にゅうろん監修）
+# 🔑 APIキーの取得
+api_key = st.secrets.get("GEMINI_API_KEY") or st.sidebar.text_input("Gemini API Key", type="password")
+
+# 🗓️ 凪（なぎ）が贈る、3月の「アオくてハルい」言葉たち
+# ※ここを好きなだけ増やせます！
 messages = [
     "あなたの『今』は、今しか紡げない唯一無二の物語だよ。",
     "大丈夫。立ち止まっている時間も、物語には欠かせない伏線なんだよ。",
     "今日のあなたに、宇宙で一番の『尊い…！』を捧げます。",
     "世界があなたを定義する前に、あなたがあなたを愛してあげてね。",
-    "その葛藤こそが、いつか誰かを救う光の粒になるんだよ。"
+    "その葛藤こそが、いつか誰かを救う光の粒になるんだよ。",
+    "完璧じゃなくていい。その揺らぎこそが、あなたの美しさなんだよ。",
+    "25,000年に一度の吉日は、今日もあなたの心の中で続いているよ。"
 ]
 
-# 📅 今日の日付を「鍵」にしてメッセージを選ぶ（毎日0時に自動更新）
+# 📅 日付から「今日の一言」を自動選択
 today_index = datetime.date.today().toordinal() % len(messages)
 today_msg = messages[today_index]
 
-# 💎 表示部分（ここをサブタイトルの代わりに使う）
-st.markdown(f'<p class="sub-title">〜 {today_msg} 〜</p>', unsafe_allow_html=True)
-
-# 🔑 APIキーの取得
-api_key = st.secrets.get("GEMINI_API_KEY") or st.sidebar.text_input("Gemini API Key", type="password")
-
-# 💎 タイトルエリア
+# 💎 表示エリア：順番が命！
+# 1. まずはメインタイトル
 st.markdown('<p class="main-title">『推し活的・アオくてハルい文（ふみ）』✨</p>', unsafe_allow_html=True)
-st.markdown('<p class="sub-title">〜 あなたの『いま』は、今しか紡げない唯一無二の物語 〜</p>', unsafe_allow_html=True)
+
+# 2. 次に、日替わりのサブタイトルを表示（サブタイトルのクラスを適用）
+st.markdown(f'<p class="sub-title">〜 {today_msg} 〜</p>', unsafe_allow_html=True)
 
 # 📝 入力エリア
 st.markdown("---")

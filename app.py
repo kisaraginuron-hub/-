@@ -105,7 +105,7 @@ if st.button("✨アオくてハルい。✨"):
         with st.spinner("凪の静寂の中で、あなたのための文を編んでいます..."):
             try:
                 genai.configure(api_key=api_key)
-                model = genai.GenerativeModel('models/gemini-1.5-flash')
+                model = genai.GenerativeModel('gemini-1.5-flash')
                 
                 # 🔥 如月 凪 監修：優しく対等な「親愛」プロンプト
                 prompt = f"""

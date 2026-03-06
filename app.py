@@ -41,6 +41,13 @@ st.markdown("""
         font-weight: 300;
     }
 
+/* 💌 署名エリア：サブタイトルと同じサイズに設定 */
+    .response-header {
+        font-size: 0.85em;
+        color: #7f8c8d;
+        font-weight: 500;
+        margin-bottom: 10px;
+    
     /* ボタン：アオハルらしさをキープ */
     .stButton>button {
         background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
@@ -71,11 +78,11 @@ api_key = st.secrets.get("GEMINI_API_KEY") or st.sidebar.text_input("Gemini API 
 
 # 💎 タイトルエリア
 st.markdown('<p class="main-title">『推し活的・アオくてハルい文（ふみ）』✨</p>', unsafe_allow_html=True)
-st.markdown('<p class="sub-title">〜 あなたの『今』は、今しか紡げない唯一無二の物語 〜</p>', unsafe_allow_html=True)
+st.markdown('<p class="sub-title">〜 あなたの『いま』は、今しか紡げない唯一無二の物語 〜</p>', unsafe_allow_html=True)
 
 # 📝 入力エリア
 st.markdown("---")
-user_input = st.text_area("「今のダルい、5行で改行して吐き出してみ？」　そしてアオハルボタン押してみて🌸", 
+user_input = st.text_area("「今のダルい、吐き出してみ？」　そしてアオハルボタン押してみて🌸", 
                          placeholder="例：なんだか今日は元気なくて、ちょっと休んでもいいかな...",
                          height=180)
 

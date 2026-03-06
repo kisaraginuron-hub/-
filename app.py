@@ -80,6 +80,22 @@ st.markdown("""
         font-size: 1.05em !important;
         color: #2c3e50 !important;
     }
+　　/* 8. 入力エリア：白く、ふっくらと浮かび上がらせる */
+    .stTextArea textarea {
+        background-color: #ffffff !important; /* 真っ白にして視認性UP */
+        color: #2c3e50 !important;
+        border-radius: 15px !important;
+        border: 1px solid #d1d9e6 !important; /* 繊細な境界線 */
+        box-shadow: inset 2px 2px 5px rgba(0,0,0,0.02), 0 5px 15px rgba(0,0,0,0.03) !important;
+        padding: 15px !important;
+    }
+
+    /* 入力エリアのラベル（「今のダルい...」の文字）の色も調整 */
+    .stTextArea label p {
+        color: #455a64 !important;
+        font-weight: 700 !important;
+        font-size: 0.9em !important;
+    }
     </style>
     """, unsafe_allow_html=True)
 

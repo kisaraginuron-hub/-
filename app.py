@@ -68,12 +68,12 @@ api_key = st.secrets.get("GEMINI_API_KEY") or st.sidebar.text_input("Gemini API 
 
 # 💎 タイトルエリア
 st.markdown('<p class="main-title">『推し活的・アオくてハルい文（ふみ）』✨</p>', unsafe_allow_html=True)
-st.markdown("##### 〜 あなたの『今』は、今しか紡げない唯一無二の物語 〜")
+st.markdown("##### 〜 あなたの『いま』は、今しか紡げない唯一無二の物語 〜")
 
 # 📝 入力エリア
 st.markdown("---")
-user_input = st.text_area("「今のダルい、5行で改行して吐き出してみ？んでアオハルボタン押してみて？」", 
-                         placeholder="例：やりたいことはあるのに、体が動かなくて自分にガッカリしちゃう...",
+user_input = st.text_area("「今のダルい、吐き出してみ？んでアオハルボタン押してみて？」", 
+                         placeholder="例：今日はなんだか元気なくて、ちょっと休んでもいいかな...",
                          height=180)
 
 # 🚀 魔法のボタン

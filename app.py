@@ -4,71 +4,80 @@ import google.generativeai as genai
 # 🎨 ページの設定
 st.set_page_config(page_title="アオくてハルい文（ふみ）", page_icon="✨", layout="centered")
 
-# 💎 デザインの再定義（フォント・サイズ・トーン）
+# 💎 鉄壁のデザイン定義（喧嘩に勝つためのCSS）
 st.markdown("""
     <style>
-    /* 柔らかくモダンな「Zen 丸ゴシック」を導入 */
+    /* Google Fontsの読み込み */
     @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;500;700&display=swap');
     
-    html, body, [data-testid="stAppViewContainer"] {
-        font-family: 'Zen Maru Gothic', sans-serif;
-        background-color: #f8fbff;
-        color: #2c3e50;
+    /* 1. アプリ全体のフォントを「Zen 丸ゴシック」に強制固定 */
+    html, body, [data-testid="stAppViewContainer"], [data-testid="stHeader"], .st-emotion-cache-1vt4894, p, div, span, button, textarea {
+        font-family: 'Zen Maru Gothic', sans-serif !important;
     }
 
-    /* 🛡️ ツールバー・メニューの目隠し */
+    /* 2. 🛡️ ツールバー・メニューの目隠し（凪の守護） */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
-    div[data-testid="stToolbar"] { display: none; }
+    div[data-testid="stToolbar"] { display: none !important; }
 
-    /* タイトルの調整：スマホで1行、かつ存在感を */
+    /* 3. メインタイトルの調整 */
     .main-title {
-        font-size: 1.8em;
-        font-weight: 700;
-        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 0px;
-        line-height: 1.2;
+        font-size: 1.8em !important;
+        font-weight: 700 !important;
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        margin-bottom: 0px !important;
+        line-height: 1.2 !important;
     }
 
-    /* サブタイトルの調整：タイトルの邪魔をしないサイズに */
+    /* 4. サブタイトルの調整（0.85em） */
     .sub-title {
-        font-size: 0.85em;
-        color: #7f8c8d;
-        margin-top: 5px;
-        font-weight: 300;
+        font-size: 0.85em !important;
+        color: #7f8c8d !important;
+        margin-top: 5px !important;
+        font-weight: 300 !important;
     }
 
-　　　/* 💌 署名エリア：サブタイトルと同じサイズに設定 */
+    /* 5. 💌 署名エリア：確実に小さく表示 */
     .response-header {
-        font-size: 0.85em;
-        color: #7f8c8d;
-        font-weight: 500;
-        margin-bottom: 10px;
-    
-    /* ボタン：アオハルらしさをキープ */
-    .stButton>button {
-        background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
-        color: white;
-        border-radius: 20px;
-        padding: 0.7em 2em;
-        font-size: 1.1em;
-        font-weight: 700;
-        border: none;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        font-size: 0.75em !important; /* サブタイトルよりさらに一回り小さく */
+        color: #95a5a6 !important;
+        font-weight: 500 !important;
+        margin-top: 20px !important;
+        margin-bottom: 5px !important;
+        display: block !important;
     }
 
-    /* レスポンスカード：優しく包み込むデザイン */
+    /* 6. 🚀 ボタン：グラデーションを絶対に守る */
+    .stButton>button {
+        background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%) !important;
+        color: white !important;
+        border-radius: 20px !important;
+        padding: 0.7em 2em !important;
+        font-size: 1.1em !important;
+        font-weight: 700 !important;
+        border: none !important;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        transition: all 0.3s ease !important;
+        width: 100% !important; /* スマホで押しやすく */
+    }
+    .stButton>button:hover {
+        transform: translateY(-2px) !important;
+        opacity: 0.9 !important;
+    }
+
+    /* 7. レスポンスカード：優しく包み込む */
     .response-card {
-        background: white;
-        padding: 25px;
-        border-radius: 20px;
-        border-left: 6px solid #a1c4fd;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-        line-height: 2.0;
-        font-size: 1.05em;
+        background: white !important;
+        padding: 25px !important;
+        border-radius: 20px !important;
+        border-left: 6px solid #a1c4fd !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.04) !important;
+        line-height: 2.0 !important;
+        font-size: 1.05em !important;
+        color: #2c3e50 !important;
     }
     </style>
     """, unsafe_allow_html=True)

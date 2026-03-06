@@ -75,7 +75,7 @@ st.markdown('<p class="sub-title">〜 あなたの『今』は、今しか紡げ
 
 # 📝 入力エリア
 st.markdown("---")
-user_input = st.text_area("「今のダルい、5行で改行して吐き出してみ？んでアオハルボタン押してみて？」", 
+user_input = st.text_area("「今のダルい、5行で改行して吐き出してみ？」そしてアオハルボタン押してみて🌸", 
                          placeholder="例：なんだか今日は元気なくて、ちょっと休んでもいいかな...",
                          height=180)
 

@@ -185,6 +185,11 @@ if st.button("✨アオくてハルい。✨"):
             except Exception as e:
                 st.error(f"魔法の調整が必要です：{e}")
 
-# 🍑 フッター
+# 🍑 フッター（改行と微調整）
 st.markdown("---")
-st.caption("Produced by 如月にゅうろん 🌸 2026.03.05 - 25,000年に一度の吉日に願いを込めて。")
+st.markdown("""
+    <p style="text-align: center; font-size: 0.8em; color: #7f8c8d; line-height: 1.6;">
+        Produced by 如月にゅうろん 🌸 2026.03.05<br>
+        - 25,000年に一度の吉日に願いを込めて。
+    </p>
+    """, unsafe_allow_html=True)

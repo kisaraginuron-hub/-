@@ -4,6 +4,24 @@ import google.generativeai as genai
 # 🎨 ページの設定
 st.set_page_config(page_title="アオくてハルい文（ふみ）", page_icon="✨", layout="centered")
 
+import datetime
+
+# 🗓️ 日替わりメッセージのリスト（如月にゅうろん監修）
+messages = [
+    "あなたの『今』は、今しか紡げない唯一無二の物語だよ。",
+    "大丈夫。立ち止まっている時間も、物語には欠かせない伏線なんだよ。",
+    "今日のあなたに、宇宙で一番の『尊い…！』を捧げます。",
+    "世界があなたを定義する前に、あなたがあなたを愛してあげてね。",
+    "その葛藤こそが、いつか誰かを救う光の粒になるんだよ。"
+]
+
+# 📅 今日の日付を「鍵」にしてメッセージを選ぶ（毎日0時に自動更新）
+today_index = datetime.date.today().toordinal() % len(messages)
+today_msg = messages[today_index]
+
+# 💎 表示部分（ここをサブタイトルの代わりに使う）
+st.markdown(f'<p class="sub-title">〜 {today_msg} 〜</p>', unsafe_allow_html=True)
+
 # 💎 鉄壁のデザイン定義（喧嘩に勝つためのCSS）
 st.markdown("""
     <style>

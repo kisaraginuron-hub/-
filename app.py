@@ -4,61 +4,64 @@ import google.generativeai as genai
 # 🎨 ページの設定
 st.set_page_config(page_title="アオくてハルい文（ふみ）", page_icon="✨", layout="centered")
 
-# 💎 モダンUI：洗練されたフォントと透明感の設計
+# 💎 デザインの再定義（フォント・サイズ・トーン）
 st.markdown("""
     <style>
-    /* Google Fontsから洗練された日本語フォントを導入 */
-    @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;500;700&display=swap');
+    /* 柔らかくモダンな「Zen 丸ゴシック」を導入 */
+    @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;500;700&display=swap');
     
     html, body, [data-testid="stAppViewContainer"] {
-        font-family: 'Zen Kaku Gothic New', sans-serif;
-        background-color: #f5f9ff;
+        font-family: 'Zen Maru Gothic', sans-serif;
+        background-color: #f8fbff;
         color: #2c3e50;
     }
 
-    /* タイトルをグラデーションでモダンに */
-    .main-title {
-        font-size: 2.2em;
-        font-weight: 700;
-        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 0.1em;
-    }
-
-    /* 🛡️ ツールバーとメニューの目隠し（凪の守護） */
+    /* 🛡️ ツールバー・メニューの目隠し */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
     div[data-testid="stToolbar"] { display: none; }
 
-    /* ボタンデザインの洗練 */
+    /* タイトルの調整：スマホで1行、かつ存在感を */
+    .main-title {
+        font-size: 1.8em;
+        font-weight: 700;
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0px;
+        line-height: 1.2;
+    }
+
+    /* サブタイトルの調整：タイトルの邪魔をしないサイズに */
+    .sub-title {
+        font-size: 0.85em;
+        color: #7f8c8d;
+        margin-top: 5px;
+        font-weight: 300;
+    }
+
+    /* ボタン：アオハルらしさをキープ */
     .stButton>button {
         background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
         color: white;
-        border-radius: 15px;
+        border-radius: 20px;
         padding: 0.7em 2em;
         font-size: 1.1em;
         font-weight: 700;
         border: none;
         box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-        transition: all 0.3s ease;
-    }
-    .stButton>button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     }
 
-    /* レスポンスカード：ミニマルで知的な余白 */
+    /* レスポンスカード：優しく包み込むデザイン */
     .response-card {
         background: white;
-        padding: 30px;
+        padding: 25px;
         border-radius: 20px;
-        border-left: 5px solid #9face6;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.03);
-        line-height: 1.9;
+        border-left: 6px solid #a1c4fd;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+        line-height: 2.0;
         font-size: 1.05em;
-        letter-spacing: 0.05em;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -68,12 +71,12 @@ api_key = st.secrets.get("GEMINI_API_KEY") or st.sidebar.text_input("Gemini API 
 
 # 💎 タイトルエリア
 st.markdown('<p class="main-title">『推し活的・アオくてハルい文（ふみ）』✨</p>', unsafe_allow_html=True)
-st.markdown("##### 〜 あなたの『いま』は、今しか紡げない唯一無二の物語 〜")
+st.markdown('<p class="sub-title">〜 あなたの『今』は、今しか紡げない唯一無二の物語 〜</p>', unsafe_allow_html=True)
 
 # 📝 入力エリア
 st.markdown("---")
-user_input = st.text_area("「今のダルい、吐き出してみ？んでアオハルボタン押してみて？」", 
-                         placeholder="例：今日はなんだか元気なくて、ちょっと休んでもいいかな...",
+user_input = st.text_area("「今のダルい、5行で改行して吐き出してみ？んでアオハルボタン押してみて？」", 
+                         placeholder="例：なんだか今日は元気なくて、ちょっと休んでもいいかな...",
                          height=180)
 
 # 🚀 魔法のボタン
@@ -83,24 +86,30 @@ if st.button("✨アオくてハルい。✨"):
     elif not user_input:
         st.warning("あなたの本音を聞かせてください。")
     else:
-        with st.spinner("凪の静寂の中で、あなたの言葉を編んでいます..."):
+        with st.spinner("凪の静寂の中で、あなたのための文を編んでいます..."):
             try:
                 genai.configure(api_key=api_key)
                 model = genai.GenerativeModel('models/gemini-2.5-flash')
                 
-                # 🔥 如月 凪 監修：ブレない人格と短文の美学プロンプト
+                # 🔥 如月 凪 監修：優しく対等な「親愛」プロンプト
                 prompt = f"""
-                あなたは相談者の「20年来の親友」であり、知的で穏やかな「一番の理解者」です。
-                性別を感じさせない中性的で洗練された口調を貫いてください。
+                あなたは相談者のことを深く敬愛し、隣で寄り添い続ける「一番のBuddy（親友）」です。
+                「見下す」「教え諭す」といった態度は厳禁です。
 
-                【最重要ミッション】
-                1. 合計250〜300文字程度の「短く、密度の高い文」を生成してください。
-                2. 「未完成」という言葉を直接使わず、その尊さを比喩（物語の核心、純粋なプロセス等）で伝えてください。
-                3. 基本は静かで知的なトーンですが、1箇所だけ「尊い…！」「神展開すぎる」「アクスタにして飾りたい」等のオタク的パッションを爆発させてください。
-                4. 以下の3段落構成で回答してください：
-                   - 第1段落：本音への深い共感
-                   - 第2段落：今の葛藤を「物語の必然」として定義する
-                   - 第3段落：心からの「大好きだよ」の誓い
+                【話し方の徹底ルール】
+                1. 自分のことは必ず「私」、相手のことは必ず「あなた」と呼んでください。「僕」「君」は禁止です。
+                2. 語尾は「〜だよ」「〜だね」「〜ですよ」など、柔らかく丁寧な表現にしてください。「〜だ」「〜である」は禁止です。
+                3. 親しみやすさと、知的な品格を両立させた「中性的で温かいトーン」を維持してください。
+
+                【ミッション】
+                - 合計300文字程度の、心に染みる手紙のような文を生成してください。
+                - 1箇所だけ「尊い…！」「神回」「アクスタ案件」等のオタク的パッションを、丁寧な口調の中に混ぜてください。
+                - 「未完成」という直接的な言葉は避け、「描いている最中の地図」や「美しいプロセス」などの比喩を用いてください。
+
+                【構成】
+                1. あなたの本音への深い共感
+                2. その心の揺らぎが、いかに美しい物語のイチブであるかの肯定
+                3. これからも隣にいることを誓う、温かい「大好きだよ」の言葉
 
                 相談者の今の本音：
                 「{user_input}」

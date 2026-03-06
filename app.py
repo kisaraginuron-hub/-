@@ -11,9 +11,11 @@ st.markdown("""
     /* Google Fontsの読み込み */
     @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;500;700&display=swap');
     
-    /* 1. アプリ全体のフォントを「Zen 丸ゴシック」に強制固定 */
-    html, body, [data-testid="stAppViewContainer"], [data-testid="stHeader"], .st-emotion-cache-1vt4894, p, div, span, button, textarea {
+    /* 1. 背景色：白浮きしない、落ち着いた淡いブルーへ */
+    html, body, [data-testid="stAppViewContainer"] {
         font-family: 'Zen Maru Gothic', sans-serif !important;
+        background-color: #f0f4f8 !important; /* 少しだけ青みを濃くしました */
+        color: #2c3e50 !important;
     }
 
     /* 2. 🛡️ ツールバー・メニューの目隠し（凪の守護） */
@@ -33,21 +35,19 @@ st.markdown("""
         line-height: 1.2 !important;
     }
 
-    /* 4. サブタイトルの調整（0.85em） */
+    /* 4. サブタイトル：読みやすさを追求したブルーグレー */
     .sub-title {
         font-size: 0.85em !important;
-        color: #7f8c8d !important;
+        color: #546e7a !important; /* 薄いグレーから、意思のある深い色へ */
         margin-top: 5px !important;
-        font-weight: 300 !important;
+        font-weight: 500 !important; /* 少しだけ太くして、光に負けないように */
     }
 
-    /* 5. 💌 署名エリア：確実に小さく表示 */
+    /* 5. 💌 署名エリア：こちらも少し濃く */
     .response-header {
-        font-size: 0.75em !important; /* サブタイトルよりさらに一回り小さく */
-        color: #95a5a6 !important;
-        font-weight: 500 !important;
+        font-size: 0.75em !important;
+        color: #607d8b !important; /* 署名もくっきりさせます */
         margin-top: 20px !important;
-        margin-bottom: 5px !important;
         display: block !important;
     }
 

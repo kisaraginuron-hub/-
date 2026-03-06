@@ -41,7 +41,7 @@ st.markdown("""
         font-weight: 300;
     }
 
-/* 💌 署名エリア：サブタイトルと同じサイズに設定 */
+　　　/* 💌 署名エリア：サブタイトルと同じサイズに設定 */
     .response-header {
         font-size: 0.85em;
         color: #7f8c8d;

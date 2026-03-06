@@ -80,17 +80,24 @@ st.markdown("""
         font-size: 1.05em !important;
         color: #2c3e50 !important;
     }
-　　/* 8. 入力エリア：白く、ふっくらと浮かび上がらせる */
-    .stTextArea textarea {
-        background-color: #ffffff !important; /* 真っ白にして視認性UP */
+　　/* 8. 入力エリア：全デバイスで「絶対的な白」を強制する */
+    /* 枠組み、背景、入力欄のすべてを白で塗りつぶします */
+    .stTextArea textarea, 
+    div[data-baseweb="textarea"], 
+    div[data-baseweb="textarea"] > div {
+        background-color: #ffffff !important;
         color: #2c3e50 !important;
-        border-radius: 15px !important;
-        border: 1px solid #d1d9e6 !important; /* 繊細な境界線 */
-        box-shadow: inset 2px 2px 5px rgba(0,0,0,0.02), 0 5px 15px rgba(0,0,0,0.03) !important;
-        padding: 15px !important;
+        -webkit-text-fill-color: #2c3e50 !important; /* iPhoneでの文字色を固定 */
     }
 
-    /* 入力エリアのラベル（「今のダルい...」の文字）の色も調整 */
+    /* 外側の枠線を整え、影をつけて浮かび上がらせる */
+    div[data-baseweb="textarea"] {
+        border-radius: 15px !important;
+        border: 1px solid #d1d9e6 !important;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05) !important;
+    }
+
+    /* 入力エリアのラベル（文字）を読みやすく */
     .stTextArea label p {
         color: #455a64 !important;
         font-weight: 700 !important;
